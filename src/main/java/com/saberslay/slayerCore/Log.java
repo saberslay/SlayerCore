@@ -8,10 +8,6 @@ package com.saberslay.slayerCore;
 
 public final class Log {
 
-    private Log() {
-        // Utility class
-    }
-
     // ===== INFO =====
     public static void Info(String msg) {
         System.out.println(
