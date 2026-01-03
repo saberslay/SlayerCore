@@ -8,60 +8,55 @@ package com.saberslay.slayerCore;
 
 public final class Log {
 
-    // Logs a critical message
-    public static void Critical(String msg) {
+    private Log() {
+        // Utility class
+    }
+
+    // ===== INFO =====
+    public static void Info(String msg) {
         System.out.println(
                 ConsoleColors.applyColor(ConsoleColors.WHITE, Time.getCurrentDateTime()) + " " +
-                        ConsoleColors.applyColor(ConsoleColors.RED, "[Critical]") + " " +
-                        msg
+                        ConsoleColors.applyColor(ConsoleColors.CYAN, "[Info]") + " " +
+                        ConsoleColors.applyColor(ConsoleColors.WHITE, msg) +
+                        ConsoleColors.RESET
         );
     }
 
-    // Logs a warning message
+    // ===== WARNING =====
     public static void Warning(String msg) {
         System.out.println(
                 ConsoleColors.applyColor(ConsoleColors.WHITE, Time.getCurrentDateTime()) + " " +
                         ConsoleColors.applyColor(ConsoleColors.YELLOW, "[Warning]") + " " +
-                        msg
+                        ConsoleColors.applyColor(ConsoleColors.WHITE, msg) +
+                        ConsoleColors.RESET
         );
     }
 
-    // Logs an info message
-    public static void Info(String msg) {
-        System.out.println(
-                ConsoleColors.applyColor(ConsoleColors.WHITE, Time.getCurrentDateTime()) + " " +
-                        ConsoleColors.applyColor(ConsoleColors.WHITE, "[Info]") + " " +
-                        msg
-        );
-    }
-
-    // Logs a critical exception
-    public static void Critical(Exception e) {
+    // ===== CRITICAL =====
+    public static void Critical(String msg) {
         System.out.println(
                 ConsoleColors.applyColor(ConsoleColors.WHITE, Time.getCurrentDateTime()) + " " +
                         ConsoleColors.applyColor(ConsoleColors.RED, "[Critical]") + " " +
-                        e.getMessage()
+                        ConsoleColors.applyColor(ConsoleColors.WHITE, msg) +
+                        ConsoleColors.RESET
         );
-        e.printStackTrace(System.out); // prints full stack trace
     }
 
-    // Logs a warning exception
-    public static void Warning(Exception e) {
-        System.out.println(
-                ConsoleColors.applyColor(ConsoleColors.WHITE, Time.getCurrentDateTime()) + " " +
-                        ConsoleColors.applyColor(ConsoleColors.YELLOW, "[Warning]") + " " +
-                        e.getMessage()
-        );
+    // ===== INFO EXCEPTION =====
+    public static void Info(Exception e) {
+        Info(e.getMessage());
         e.printStackTrace(System.out);
     }
 
-    // Logs an info exception
-    public static void Info(Exception e) {
-        System.out.println(
-                ConsoleColors.applyColor(ConsoleColors.WHITE, Time.getCurrentDateTime()) + " " +
-                        ConsoleColors.applyColor(ConsoleColors.WHITE, "[Info]") + " " +
-                        e.getMessage()
-        );
+    // ===== WARNING EXCEPTION =====
+    public static void Warning(Exception e) {
+        Warning(e.getMessage());
+        e.printStackTrace(System.out);
+    }
+
+    // ===== CRITICAL EXCEPTION =====
+    public static void Critical(Exception e) {
+        Critical(e.getMessage());
         e.printStackTrace(System.out);
     }
 }
