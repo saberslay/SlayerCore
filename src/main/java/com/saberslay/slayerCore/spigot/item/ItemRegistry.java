@@ -1,8 +1,14 @@
-package com.saberslay.saberCore.spigot.item;
+package com.saberslay.slayerCore.spigot.item;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
 
 public class ItemRegistry {
 

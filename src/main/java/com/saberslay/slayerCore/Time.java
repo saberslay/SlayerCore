@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;

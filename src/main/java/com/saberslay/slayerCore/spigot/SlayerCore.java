@@ -1,7 +1,13 @@
 package com.saberslay.slayerCore.spigot;
 
-import com.saberslay.saberCore.spigot.listeners.CustomItemListener;
+import com.saberslay.slayerCore.spigot.listeners.CustomItemListener;
 import org.bukkit.plugin.java.JavaPlugin;
+
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
 
 public final class SlayerCore extends JavaPlugin {
 

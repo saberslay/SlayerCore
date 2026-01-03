@@ -6,7 +6,7 @@
 
     <groupId>com.saberslay</groupId>
     <artifactId>SlayerCore</artifactId>
-    <version>1.0.0-1.20.1</version>
+    <version>1.0.0-1.21.0</version>
     <packaging>jar</packaging>
 
     <name>SlayerCore</name>

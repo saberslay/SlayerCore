@@ -1,7 +1,7 @@
-package com.saberslay.saberCore.spigot.listeners;
+package com.saberslay.slayerCore.spigot.listeners;
 
-import com.saberslay.saberCore.spigot.item.CustomItem;
-import com.saberslay.saberCore.spigot.item.ItemRegistry;
+import com.saberslay.slayerCore.spigot.item.CustomItem;
+import com.saberslay.slayerCore.spigot.item.ItemRegistry;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +10,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
 
 public class CustomItemListener implements Listener {
 

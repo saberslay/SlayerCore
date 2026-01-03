@@ -1,7 +1,13 @@
-package com.saberslay.saberCore.spigot.item;
+package com.saberslay.slayerCore.spigot.item;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
 
 public interface CustomItem {
 

@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 public class NumberFormatter {
 
     private static final String[] ABBREVIATIONS = {

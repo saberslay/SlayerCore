@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 public class Log {
     public void Critical(String msg) {
         System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
