@@ -16,7 +16,6 @@ public final class SlayerCore extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
         // Register listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
 

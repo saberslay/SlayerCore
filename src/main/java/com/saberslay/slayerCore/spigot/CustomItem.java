@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore.spigot.item;
+package com.saberslay.slayerCore.spigot;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore.spigot.item;
+package com.saberslay.slayerCore.spigot;
 
 import java.util.Collection;
 import java.util.HashMap;

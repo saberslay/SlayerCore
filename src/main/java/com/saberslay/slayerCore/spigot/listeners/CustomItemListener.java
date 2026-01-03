@@ -1,7 +1,7 @@
 package com.saberslay.slayerCore.spigot.listeners;
 
-import com.saberslay.slayerCore.spigot.item.CustomItem;
-import com.saberslay.slayerCore.spigot.item.ItemRegistry;
+import com.saberslay.slayerCore.spigot.CustomItem;
+import com.saberslay.slayerCore.spigot.ItemRegistry;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,7 +1,7 @@
 name: SlayerCore
 version: '1.0.0-1.20.1'
 main: com.saberslay.slayerCore.spigot.SlayerCore
-api-version: '1.21'
+api-version: '1.20'
 author: Saberslay
 description: >
   A core utility plugin for Saberslay Minecraft plugins.

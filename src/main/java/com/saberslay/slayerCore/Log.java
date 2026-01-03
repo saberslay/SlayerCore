@@ -6,43 +6,62 @@ package com.saberslay.slayerCore;
  * Licensed under the MIT License.
  */
 
-public class Log {
-    public void Critical(String msg) {
-        System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
-                ConsoleColors.applyColor("\033[1;31m", "[Critical]"));
+public final class Log {
+
+    // Logs a critical message
+    public static void Critical(String msg) {
+        System.out.println(
+                ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
+                        ConsoleColors.applyColor("\033[1;31m", "[Critical]") + " " +
+                        msg
+        );
     }
 
-    public void Warning(String msg) {
-        System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
-                ConsoleColors.applyColor("\033[1;33m", "[Warning]"));
+    // Logs a warning message
+    public static void Warning(String msg) {
+        System.out.println(
+                ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
+                        ConsoleColors.applyColor("\033[1;33m", "[Warning]") + " " +
+                        msg
+        );
     }
 
-    public void Info(String msg) {
-        System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
-                ConsoleColors.applyColor("\033[1;36m", "[Info]"));
+    // Logs an info message
+    public static void Info(String msg) {
+        System.out.println(
+                ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
+                        ConsoleColors.applyColor("\033[1;36m", "[Info]") + " " +
+                        msg
+        );
     }
 
-    public void Critical(Exception e) {
-        StringBuilder stackTrace = new StringBuilder();
-        for (StackTraceElement element : e.getStackTrace())
-            stackTrace.append("\n\t ").append(element);
-        System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
-                ConsoleColors.applyColor("\033[1;36m", "[Critical]"));
+    // Logs a critical exception
+    public static void Critical(Exception e) {
+        System.out.println(
+                ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
+                        ConsoleColors.applyColor("\033[1;31m", "[Critical]") + " " +
+                        e.getMessage()
+        );
+        e.printStackTrace(System.out); // prints full stack trace
     }
 
-    public void Warning(Exception e) {
-        StringBuilder stackTrace = new StringBuilder();
-        for (StackTraceElement element : e.getStackTrace())
-            stackTrace.append("\n\t ").append(element);
-        System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
-                ConsoleColors.applyColor("\033[1;36m", "[Warning]"));
+    // Logs a warning exception
+    public static void Warning(Exception e) {
+        System.out.println(
+                ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
+                        ConsoleColors.applyColor("\033[1;33m", "[Warning]") + " " +
+                        e.getMessage()
+        );
+        e.printStackTrace(System.out);
     }
 
-    public void Info(Exception e) {
-        StringBuilder stackTrace = new StringBuilder();
-        for (StackTraceElement element : e.getStackTrace())
-            stackTrace.append("\n\t ").append(element);
-        System.out.println(ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " + ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
-                ConsoleColors.applyColor("\033[1;36m", "[Info]"));
+    // Logs an info exception
+    public static void Info(Exception e) {
+        System.out.println(
+                ConsoleColors.applyColor("\033[1;32m", Time.getCurrentDateTime()) + " " +
+                        ConsoleColors.applyColor("\033[1;36m", "[Info]") + " " +
+                        e.getMessage()
+        );
+        e.printStackTrace(System.out);
     }
 }
