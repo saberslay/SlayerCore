@@ -4,9 +4,6 @@ import com.saberslay.slayerCore.Logger;
 import com.saberslay.slayerCore.spigot.listeners.CustomItemListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static com.saberslay.slayerCore.Logger.log;
-import static com.saberslay.slayerCore.Logger.Level.INFO;
-
 /*
  * SlayerCore
  * Copyright (c) 2026 saberslay
@@ -23,7 +20,7 @@ public final class SlayerCore extends JavaPlugin {
         // Register listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
 
-        log(INFO, "SaberCore enabled!");
+        Logger.info("SaberCore enabled!");
     }
 
     @Override

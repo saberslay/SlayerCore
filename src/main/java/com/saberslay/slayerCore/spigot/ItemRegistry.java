@@ -30,7 +30,6 @@ public final class ItemRegistry {
         if (ITEMS.containsKey(id)) {
             throw new IllegalStateException("Duplicate CustomItem ID: " + id);
         }
-
         ITEMS.put(id, item);
     }
 
