@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 public class Logger {
 
     // Simple log levels
