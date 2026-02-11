@@ -41,11 +41,4 @@ public class Logger {
     public static void error(String msg) {
         log(Level.ERROR, msg);
     }
-
-    // Example usage
-    public static void main(String[] args) {
-        Logger.info("This is an info message.");
-        Logger.warn("This is a warning message.");
-        Logger.error("This is an error message.");
-    }
 }
