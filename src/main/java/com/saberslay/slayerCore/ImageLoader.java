@@ -8,7 +8,6 @@ package com.saberslay.slayerCore;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
@@ -20,12 +19,8 @@ import javax.swing.JFrame;
  * Licensed under the MIT License.
  */
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
-import java.io.IOException;
+import static com.saberslay.slayerCore.Logger.Level.*;
+import static com.saberslay.slayerCore.Logger.log;
 
 public class ImageLoader {
 
@@ -36,7 +31,7 @@ public class ImageLoader {
 
         try (InputStream is = ImageLoader.class.getResourceAsStream(path)) {
             if (is == null) {
-                Logger.warn("Icon not found on classpath: " + path);
+                log(WARNING,"Icon not found on classpath: " + path);
                 return;
             }
 
@@ -44,7 +39,7 @@ public class ImageLoader {
             frame.setIconImage(icon);
 
         } catch (IOException e) {
-            Logger.warn("Failed to load window icon: " + path);
+            log(WARNING,"Failed to load window icon: " + path);
             e.printStackTrace();
         }
     }
@@ -54,12 +49,12 @@ public class ImageLoader {
 
         try (InputStream is = ImageLoader.class.getResourceAsStream(path)) {
             if (is == null) {
-                Logger.warn("Image not found on classpath: " + path);
+                log(WARNING,"Image not found on classpath: " + path);
                 return null;
             }
             return ImageIO.read(is);
         } catch (IOException e) {
-            Logger.warn("Failed to load image: " + path);
+            log(WARNING,"Failed to load image: " + path);
             e.printStackTrace();
             return null;
         }

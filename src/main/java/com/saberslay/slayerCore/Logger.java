@@ -29,16 +29,4 @@ public class Logger {
         }
     }
 
-    // Convenience methods
-    public static void info(String msg) {
-        log(Level.INFO, msg);
-    }
-
-    public static void warn(String msg) {
-        log(Level.WARNING, msg);
-    }
-
-    public static void error(String msg) {
-        log(Level.ERROR, msg);
-    }
 }
