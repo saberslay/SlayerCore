@@ -36,26 +36,6 @@ public class Main {
 
 ---
 
-## 🔹 Using Convenience Methods
-
-Instead of static imports, you can call **explicit methods**:
-
-```java
-import com.saberslay.slayerCore.Logger;
-
-public class Main {
-    public static void main(String[] args) {
-        Logger.info("This is an info message!");       // ℹ️ Info
-        Logger.warn("This is a warning message!");     // ⚠️ Warning
-        Logger.error("This is an error message!");     // ❌ Error
-    }
-}
-```
-
-✅ This is helpful for clarity or when using multiple loggers.
-
----
-
 ## 🎨 Output Example
 
 When run in a terminal supporting ANSI colors:
