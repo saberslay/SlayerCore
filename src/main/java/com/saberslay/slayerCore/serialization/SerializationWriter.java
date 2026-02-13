@@ -11,6 +11,13 @@ public class SerializationWriter {
     public static final byte[] HEADER = "SC".getBytes();
     public static final short VERSION = 0x0100; // big endian
 
+    public static int writeBytes(byte[] dest, int pointer, byte[] src) {
+        for(int i = 0; i < src.length; i++) {
+            dest[pointer++] = src[i];
+        }
+        return pointer;
+    }
+
     public static int writeBytes(byte[] dest, int pointer, byte value) {
         dest[pointer++] = value;
         return pointer;
@@ -65,8 +72,7 @@ public class SerializationWriter {
     }
 
     public static int writeBytes(byte[] dest, int pointer, String string ) {
-        // 1. Write the size before the string 07 sa be rs la y
-        // 2. Null-termination character sa be rs la y 0
-        // 3. Both 06
+        pointer = writeBytes(dest, pointer, (short) string.length());
+        return writeBytes(dest, pointer, string.getBytes());
     }
 }
