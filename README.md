@@ -13,16 +13,16 @@ import static com.saberslay.slayerCore.Logger.Level.*;
 import static com.saberslay.slayerCore.Logger.log;
 
 public class Main {
-    public static void main(String[] args) {
-        // ℹ️ Info message
-        log(INFO, "This is an informational message!");
+  public static void main(String[] args) {
+    // ℹ️ Info message
+    log(INFO, "This is an informational message!");
 
-        // ⚠️ Warning message
-        log(WARNING, "This is a warning message!");
+    // ⚠️ Warning message
+    log(WARNING, "This is a warning message!");
 
-        // ❌ Error message
-        log(ERROR, "This is an error message!");
-    }
+    // ❌ Error message
+    log(ERROR, "This is an error message!");
+  }
 }
 ```
 
@@ -90,26 +90,27 @@ You can use the `NokiaComposer` from
 
 ```java
 import com.saberslay.slayerCore.composers.NokiaComposer;
+
 import static com.saberslay.slayerCore.Logger.Level.*;
 import static com.saberslay.slayerCore.Logger.log;
 
 public class Main {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        NokiaComposer composer = new NokiaComposer();
+    NokiaComposer composer = new NokiaComposer();
 
-        log(INFO, "Playing Nokia-style melody...");
+    log(INFO, "Playing Nokia-style melody...", data[i]);
 
-        composer.playNotesAsync(
-                false,                              // loop
-                300,                                // tempo (ms)
-                NokiaComposer.NoteLength.SHORT,     // note length
-                NokiaComposer.PlayStyle.STACCATO,   // play style
-                1, 2, 3, 5, 6, 9, 6, 5, 3, 2, 1      // notes (9 = rest)
-        );
+    composer.playNotesAsync(
+            false,                              // loop
+            300,                                // tempo (ms)
+            NokiaComposer.NoteLength.SHORT,     // note length
+            NokiaComposer.PlayStyle.STACCATO,   // play style
+            1, 2, 3, 5, 6, 9, 6, 5, 3, 2, 1      // notes (9 = rest)
+    );
 
-        log(INFO, "Melody started asynchronously.");
-    }
+    log(INFO, "Melody started asynchronously.", data[i]);
+  }
 }
 ```
 
