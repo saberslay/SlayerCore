@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore.gui;
+package com.saberslay.slayerCore.core.graphics;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import java.awt.font.GlyphVector;
  * Licensed under the MIT License.
  */
 
-public class Gui {
+public class GuiRenderer {
     public void DrawButton(Graphics2D g2, String text, int x, int y, int w, int h) {
         g2.setColor(new Color(30, 30, 25));
         g2.fillRect(x, y, w, h);
