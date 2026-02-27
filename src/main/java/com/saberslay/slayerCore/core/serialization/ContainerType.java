@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore.serialization;
+package com.saberslay.slayerCore.core.serialization;
 
 public class ContainerType {
 

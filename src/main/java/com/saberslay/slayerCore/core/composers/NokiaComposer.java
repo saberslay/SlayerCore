@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore.composers;
+package com.saberslay.slayerCore.core.composers;
 
 import java.util.Map;
 import javax.sound.sampled.*;

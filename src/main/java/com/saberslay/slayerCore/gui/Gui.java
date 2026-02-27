@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore;
+package com.saberslay.slayerCore.gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

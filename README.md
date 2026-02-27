@@ -9,8 +9,8 @@ Use the `Logger` class from `com.saberslay.slayerCore` to print **colored consol
 You can use **static imports** to simplify your logging calls:
 
 ```java
-import static com.saberslay.slayerCore.Logger.Level.*;
-import static com.saberslay.slayerCore.Logger.log;
+import static com.saberslay.slayerCore.core.logging.Logger.Level.*;
+import static com.saberslay.slayerCore.core.logging.Logger.log;
 
 public class Main {
   public static void main(String[] args) {
@@ -28,10 +28,10 @@ public class Main {
 
 **Explanation:**
 
-- `import static com.saberslay.slayerCore.Logger.Level.*;`  
+- `import static com.saberslay.slayerCore.core.logging.Logger.Level.*;`  
   Allows referencing all log levels (`INFO`, `WARNING`, `ERROR`) directly.
 
-- `import static com.saberslay.slayerCore.Logger.log;`  
+- `import static com.saberslay.slayerCore.core.logging.Logger.log;`  
   Allows calling `log(INFO, "message")` without prefixing `Logger.`.
 
 ---
@@ -69,10 +69,10 @@ You can use the `NokiaComposer` from
 ### 🚀 Basic Example (Async Playback)
 
 ```java
-import com.saberslay.slayerCore.composers.NokiaComposer;
+import com.saberslay.slayerCore.core.composers.NokiaComposer;
 
-import static com.saberslay.slayerCore.Logger.Level.*;
-import static com.saberslay.slayerCore.Logger.log;
+import static com.saberslay.slayerCore.core.logging.Logger.Level.*;
+import static com.saberslay.slayerCore.core.logging.Logger.log;
 
 public class Main {
   public static void main(String[] args) {

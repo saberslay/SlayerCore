@@ -1,10 +1,12 @@
-package com.saberslay.slayerCore;
+package com.saberslay.slayerCore.core.logging;
 
 /*
  * SlayerCore
  * Copyright (c) 2026 saberslay
  * Licensed under the MIT License.
  */
+
+import com.saberslay.slayerCore.core.time.Time;
 
 public class Logger {
 

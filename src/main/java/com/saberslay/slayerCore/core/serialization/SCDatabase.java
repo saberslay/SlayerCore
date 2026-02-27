@@ -1,6 +1,6 @@
-package com.saberslay.slayerCore.serialization;
+package com.saberslay.slayerCore.core.serialization;
 
-import static com.saberslay.slayerCore.serialization.SerializationUtils.*;
+import static com.saberslay.slayerCore.core.serialization.SerializationUtils.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

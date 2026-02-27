@@ -1,4 +1,4 @@
-package com.saberslay.slayerCore;
+package com.saberslay.slayerCore.core.logging;
 
 /*
  * SlayerCore

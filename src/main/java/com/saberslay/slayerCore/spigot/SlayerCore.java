@@ -3,8 +3,8 @@ package com.saberslay.slayerCore.spigot;
 import com.saberslay.slayerCore.spigot.listeners.CustomItemListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static com.saberslay.slayerCore.Logger.Level.*;
-import static com.saberslay.slayerCore.Logger.log;
+import static com.saberslay.slayerCore.core.logging.Logger.Level.*;
+import static com.saberslay.slayerCore.core.logging.Logger.log;
 
 /*
  * SlayerCore
