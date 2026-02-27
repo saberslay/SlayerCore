@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore.core.serialization;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 public class ContainerType {
 
 	public static final byte UNKNOWN 	= 0;
