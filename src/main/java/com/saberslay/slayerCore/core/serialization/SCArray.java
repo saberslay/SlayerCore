@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore.core.serialization;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 import static com.saberslay.slayerCore.core.serialization.SerializationUtils.*;
 
 public class SCArray extends SCBase {
