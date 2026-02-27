@@ -1,5 +1,7 @@
 package com.saberslay.slayerCore.gui;
 
+import com.saberslay.slayerCore.core.io.ImageLoader;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,13 +15,14 @@ public abstract class SlayerWindow extends JFrame {
     private final int height;
     private boolean isresizable;
 
-    public SlayerWindow(String title, int width, int height, boolean isresizable) {
+    public SlayerWindow(String title, int width, int height, boolean isresizable, String iconName) {
         super(title == null ? DEFAULT_TITLE : title);
         this.width = (width <= 0) ? DEFAULT_WIDTH : width;
         this.height = (height <= 0) ? DEFAULT_HEIGHT : height;
         this.isresizable = isresizable;
 
         configureWindow();
+        ImageLoader.setIcon(this, iconName);
         createCanvas();
         init(); // your custom setup
     }

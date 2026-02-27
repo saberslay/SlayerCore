@@ -24,10 +24,10 @@ import static com.saberslay.slayerCore.core.logging.Logger.log;
 
 public class ImageLoader {
 
-    private static final String BASE_PATH = "/gfx/";
+    private static final String BASE_PATH = "/";
 
     public static void setIcon(JFrame frame, String fileName) {
-        String path = BASE_PATH + fileName + ".png";
+        String path = BASE_PATH + fileName;
 
         try (InputStream is = ImageLoader.class.getResourceAsStream(path)) {
             if (is == null) {
