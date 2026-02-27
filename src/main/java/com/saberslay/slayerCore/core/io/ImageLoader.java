@@ -13,12 +13,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-/*
- * SlayerCore
- * Copyright (c) 2026 saberslay
- * Licensed under the MIT License.
- */
-
 import static com.saberslay.slayerCore.core.logging.Logger.Level.*;
 import static com.saberslay.slayerCore.core.logging.Logger.log;
 
