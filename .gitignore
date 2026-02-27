@@ -14,6 +14,9 @@ out/
 # Log file
 *.log
 
+# SlayerCoreDataBase file
+*.scd
+
 # BlueJ files
 *.ctxt
 
