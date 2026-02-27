@@ -1,5 +1,11 @@
 package com.saberslay.slayerCore.gui;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 import com.saberslay.slayerCore.core.io.ImageLoader;
 
 import javax.swing.*;
