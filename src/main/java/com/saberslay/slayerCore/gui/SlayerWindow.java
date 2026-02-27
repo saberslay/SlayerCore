@@ -11,13 +11,14 @@ public abstract class SlayerWindow extends JFrame {
 
     private final int width;
     private final int height;
-    private boolean isresizable = false;
+    private boolean isresizable;
 
     public SlayerWindow(String title, int width, int height, boolean isresizable) {
         super(title == null ? DEFAULT_TITLE : title);
         this.width = (width <= 0) ? DEFAULT_WIDTH : width;
         this.height = (height <= 0) ? DEFAULT_HEIGHT : height;
         this.isresizable = isresizable;
+
         configureWindow();
         createCanvas();
         init(); // your custom setup
@@ -27,7 +28,7 @@ public abstract class SlayerWindow extends JFrame {
         setSize(width, height);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(isresizable);
         setLayout(new BorderLayout());
     }
 
