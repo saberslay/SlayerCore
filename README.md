@@ -126,3 +126,74 @@ composer.playNotesAsync(false, 250, SHORT, STACCATO, 1, 3, 5, 8);
 ---
 
 With `Logger` + `NokiaComposer`, you get **clear visual logs** and **audible feedback**, perfect for SlayerCore tools and utilities.
+
+---
+
+### 🖼️ GUI Framework
+
+- Abstract base class SlayerWindow simplifies window creation:
+
+- Configurable title and size
+
+- Double-buffered rendering via Graphics2D
+
+- Clean lifecycle methods: init() and render()
+
+- Thread-safe launch mechanism
+
+Example
+```java
+import com.saberslay.slayercore.gui.SlayerWindow;
+import java.awt.*;
+
+public class TestApp extends SlayerWindow {
+
+    public TestApp() {
+        super("Slayer App", 800, 600);
+    }
+
+    @Override
+    protected void init() {
+        // setup logic
+    }
+
+    @Override
+    protected void render(Graphics2D g2) {
+        g2.setColor(Color.BLACK);
+        g2.drawString("Hello SlayerCore", 100, 100);
+    }
+
+    public static void main(String[] args) {
+        new TestApp().launch();
+    }
+}
+```
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+You are free to use, modify, and distribute this software for personal or commercial purposes, provided that you include the original copyright notice.
+
+For full license details, see the LICENSE file in the repository hosted on [Github](https://github.com/saberslay/SlayerCore)
+
+---
+
+### 🛠️ Contributing
+
+Contributions to the GitHub repository are welcome.
+
+Suggested areas for enhancement include:
+
+- Keyboard and mouse input handling
+
+- Game loop and frame timing system
+
+- Advanced rendering utilities
+
+- UI components, widgets, and sprite management
+
+- Performance optimizations and threading improvements
+
+If you would like to contribute, feel free to open a pull request or submit suggestions.
