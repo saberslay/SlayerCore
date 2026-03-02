@@ -1,6 +1,6 @@
 # 🎯 SlayerCore Logger Usage
 
-Use the `Logger` class from `com.saberslay.slayerCore` to print **colored console messages** in Java.
+Use the `Logger` class from `com.saberslay.slayercore` to print **colored console messages** in Java.
 
 ---
 
@@ -9,29 +9,29 @@ Use the `Logger` class from `com.saberslay.slayerCore` to print **colored consol
 You can use **static imports** to simplify your logging calls:
 
 ```java
-import static com.saberslay.slayerCore.core.logging.Logger.Level.*;
-import static com.saberslay.slayerCore.core.logging.Logger.log;
+import static com.saberslay.slayercore.core.logging.Logger.Level.*;
+import static com.saberslay.slayercore.core.logging.Logger.log;
 
 public class Main {
-  public static void main(String[] args) {
-    // ℹ️ Info message
-    log(INFO, "This is an informational message!");
+    public static void main(String[] args) {
+        // ℹ️ Info message
+        log(INFO, "This is an informational message!");
 
-    // ⚠️ Warning message
-    log(WARNING, "This is a warning message!");
+        // ⚠️ Warning message
+        log(WARNING, "This is a warning message!");
 
-    // ❌ Error message
-    log(ERROR, "This is an error message!");
-  }
+        // ❌ Error message
+        log(ERROR, "This is an error message!");
+    }
 }
 ```
 
 **Explanation:**
 
-- `import static com.saberslay.slayerCore.core.logging.Logger.Level.*;`  
+- `import static com.saberslay.slayercore.core.logging.Logger.Level.*;`  
   Allows referencing all log levels (`INFO`, `WARNING`, `ERROR`) directly.
 
-- `import static com.saberslay.slayerCore.core.logging.Logger.log;`  
+- `import static com.saberslay.slayercore.core.logging.Logger.log;`  
   Allows calling `log(INFO, "message")` without prefixing `Logger.`.
 
 ---
@@ -62,35 +62,35 @@ When run in a terminal supporting ANSI colors:
 ## 🎵 NokiaComposer Example Usage
 
 You can use the `NokiaComposer` from  
-`com.saberslay.slayerCore.composers` to play **simple Nokia-style monophonic tones** programmatically.
+`com.saberslay.slayercore.composers` to play **simple Nokia-style monophonic tones** programmatically.
 
 ---
 
 ### 🚀 Basic Example (Async Playback)
 
 ```java
-import com.saberslay.slayerCore.core.composers.NokiaComposer;
+import com.saberslay.slayercore.core.composers.NokiaComposer;
 
-import static com.saberslay.slayerCore.core.logging.Logger.Level.*;
-import static com.saberslay.slayerCore.core.logging.Logger.log;
+import static com.saberslay.slayercore.core.logging.Logger.Level.*;
+import static com.saberslay.slayercore.core.logging.Logger.log;
 
 public class Main {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    NokiaComposer composer = new NokiaComposer();
+        NokiaComposer composer = new NokiaComposer();
 
-    log(INFO, "Playing Nokia-style melody...", data[i]);
+        log(INFO, "Playing Nokia-style melody...", data[i]);
 
-    composer.playNotesAsync(
-            false,                              // loop
-            300,                                // tempo (ms)
-            NokiaComposer.NoteLength.SHORT,     // note length
-            NokiaComposer.PlayStyle.STACCATO,   // play style
-            1, 2, 3, 5, 6, 9, 6, 5, 3, 2, 1      // notes (9 = rest)
-    );
+        composer.playNotesAsync(
+                false,                              // loop
+                300,                                // tempo (ms)
+                NokiaComposer.NoteLength.SHORT,     // note length
+                NokiaComposer.PlayStyle.STACCATO,   // play style
+                1, 2, 3, 5, 6, 9, 6, 5, 3, 2, 1      // notes (9 = rest)
+        );
 
-    log(INFO, "Melody started asynchronously.", data[i]);
-  }
+        log(INFO, "Melody started asynchronously.", data[i]);
+    }
 }
 ```
 
