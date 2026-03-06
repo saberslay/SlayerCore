@@ -1,83 +1,63 @@
 package com.saberslay.slayercore.core.composers;
 
-import java.util.Map;
 import javax.sound.sampled.*;
+import java.util.Map;
 
 /*
- * SlayerCore
- * Copyright (c) 2026 saberslay
- * Licensed under the MIT License.
+ * SlayerCore NokiaComposer - Production Version
  */
 
 public class NokiaComposer {
 
-    public enum PlayStyle {
-        STACCATO, LEGATO
-    }
-
-    public enum NoteLength {
-        SHORT, LONG
-    }
+    // -----------------------------
+    // Config
+    // -----------------------------
 
     private static final Map<Integer, Double> NOTES = Map.of(
-            1, 261.63, // C
-            2, 293.66, // D
-            3, 329.63, // E
-            4, 349.23, // F
-            5, 392.00, // G
-            6, 440.00, // A
-            7, 493.88, // B
-            8, 523.25  // C (high)
+            1, 261.63,
+            2, 293.66,
+            3, 329.63,
+            4, 349.23,
+            5, 392.00,
+            6, 440.00,
+            7, 493.88,
+            8, 523.25
     );
 
-    private static final float SAMPLE_RATE = 8000.0f;
+    public enum PlayStyle { STACCATO, LEGATO }
 
-    public void playNotes(
-            boolean loop,
-            int tempoMs,
-            NoteLength noteLength,
-            PlayStyle style,
-            int... notes
-    ) throws LineUnavailableException, InterruptedException {
+    public enum NoteLength { SHORT, LONG }
 
-        do {
-            for (int key : notes) {
-                int duration = (noteLength == NoteLength.SHORT)
-                        ? tempoMs / 2
-                        : tempoMs;
+    private static final float SAMPLE_RATE = 8000f;
 
-                // Rest note (9 = pause)
-                if (key == 9) {
-                    Thread.sleep(duration);
-                    continue;
-                }
+    private volatile boolean playing = false;
+    private float volume = 1.0f;
 
-                Double freq = NOTES.get(key);
-                if (freq == null) continue;
+    private Thread currentThread;
 
-                if (style == PlayStyle.STACCATO) {
-                    playSquareWave(freq, duration / 2);
-                    Thread.sleep(duration / 2);
-                } else {
-                    playSquareWave(freq, duration);
-                }
-            }
-        } while (loop);
+    // -----------------------------
+    // Public API
+    // -----------------------------
+
+    public void setVolume(float volume) {
+        this.volume = Math.max(0f, Math.min(1f, volume));
     }
 
-    public void playNotesSafe(
-            boolean loop,
-            int tempoMs,
-            NoteLength noteLength,
-            PlayStyle style,
-            int... notes
-    ) {
-        try {
-            playNotes(loop, tempoMs, noteLength, style, notes);
-        } catch (LineUnavailableException | InterruptedException e) {
-            throw new RuntimeException("Error playing notes", e);
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void stop() {
+        playing = false;
+
+        if (currentThread != null) {
+            currentThread.interrupt();
         }
     }
+
+    // -----------------------------
+    // Async Player
+    // -----------------------------
 
     public void playNotesAsync(
             boolean loop,
@@ -86,21 +66,86 @@ public class NokiaComposer {
             PlayStyle style,
             int... notes
     ) {
-        new Thread(() ->
-                playNotesSafe(loop, tempoMs, noteLength, style, notes)
-        ).start();
+
+        stop();
+
+        playing = true;
+
+        currentThread = new Thread(() -> {
+            do {
+
+                try {
+                    playNotesInternal(tempoMs, noteLength, style, notes);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } while (loop && playing);
+
+            playing = false;
+
+        });
+
+        currentThread.setDaemon(true);
+        currentThread.start();
     }
 
-    private void playSquareWave(double freq, int ms)
-            throws LineUnavailableException {
+    // -----------------------------
+    // Internal Player
+    // -----------------------------
 
-        int length = (int) (SAMPLE_RATE * ms / 1000);
+    private void playNotesInternal(
+            int tempoMs,
+            NoteLength noteLength,
+            PlayStyle style,
+            int... notes
+    ) throws Exception {
+
+        for (int key : notes) {
+
+            if (!playing)
+                break;
+
+            int duration = (noteLength == NoteLength.SHORT)
+                    ? tempoMs / 2
+                    : tempoMs;
+
+            if (key == 9) {
+                Thread.sleep(duration);
+                continue;
+            }
+
+            Double freq = NOTES.get(key);
+            if (freq == null)
+                continue;
+
+            if (style == PlayStyle.STACCATO) {
+                playSquareWave(freq, duration / 2);
+                Thread.sleep(duration / 2);
+            } else {
+                playSquareWave(freq, duration);
+            }
+        }
+    }
+
+    // -----------------------------
+    // Wave Generator
+    // -----------------------------
+
+    private void playSquareWave(double freq, int ms) throws Exception {
+
+        int length = (int)(SAMPLE_RATE * ms / 1000);
         byte[] buffer = new byte[length];
 
         double period = SAMPLE_RATE / freq;
+        int amplitude = (int)(120 * volume);
 
         for (int i = 0; i < buffer.length; i++) {
-            buffer[i] = (byte) ((i % period < period / 2) ? 120 : -120);
+            buffer[i] = (byte)(
+                    (i % period < period / 2)
+                            ? amplitude
+                            : -amplitude
+            );
         }
 
         AudioFormat format = new AudioFormat(
@@ -112,9 +157,12 @@ public class NokiaComposer {
         );
 
         SourceDataLine line = AudioSystem.getSourceDataLine(format);
+
         line.open(format);
         line.start();
+
         line.write(buffer, 0, buffer.length);
+
         line.drain();
         line.stop();
         line.close();
