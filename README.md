@@ -153,7 +153,8 @@ import java.awt.*;
 public class TestApp extends SlayerWindow {
 
     public TestApp() {
-        super("Slayer App", 800, 600);
+        // The set up for the window is title,with,hight,isResisabel and icom path
+        super("Slayer App", 800, 600, true,"");
     }
 
     @Override
