@@ -7,6 +7,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/*
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
+ */
+
 public class SpriteSheet {
 
     private String path;
