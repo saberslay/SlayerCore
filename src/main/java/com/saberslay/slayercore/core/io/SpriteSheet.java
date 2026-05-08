@@ -29,13 +29,11 @@ public class SpriteSheet {
     private  void load() {
         try {
             Logger.log(Level.INFO,"Trying to load: " + path + "...");
-            BufferedImage image = ImageIO.read(SpriteSheet.class.getResource(path));
+            BufferedImage image = ImageLoader.loadImage(path);
             int w = image.getWidth();
             int h = image.getHeight();
             image.getRGB(0,0, w, h, pixels,0, w);
             Logger.log(Level.INFO,"Successfully loaded: " + path + "...");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }  catch (Exception e) {
             Logger.log(Level.ERROR,"Failed to load: " + path + "!");
         }
