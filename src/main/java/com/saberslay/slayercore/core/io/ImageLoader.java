@@ -9,7 +9,6 @@ package com.saberslay.slayercore.core.io;
 import com.saberslay.slayercore.core.logging.Level;
 import com.saberslay.slayercore.core.logging.Logger;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,20 +20,10 @@ public class ImageLoader {
     private static final String BASE_PATH = "/";
 
     public static void setIcon(JFrame frame, String fileName) {
-        String path = BASE_PATH + fileName;
+        BufferedImage icon = loadImage(fileName);
 
-        try (InputStream is = ImageLoader.class.getResourceAsStream(path)) {
-            if (is == null) {
-                Logger.log(Level.ERROR,"Icon not found on classpath: " + path);
-                return;
-            }
-
-            Image icon = ImageIO.read(is);
-            frame.setIconImage(icon);
-
-        } catch (IOException e) {
-            Logger.log(Level.WARNING,"Failed to load window icon: " + path);
-            e.printStackTrace();
+        if (icon == null) {
+            frame.setIconImage(loadImage(fileName));
         }
     }
 
