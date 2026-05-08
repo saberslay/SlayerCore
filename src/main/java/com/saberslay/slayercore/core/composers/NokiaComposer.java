@@ -4,7 +4,9 @@ import javax.sound.sampled.*;
 import java.util.Map;
 
 /*
- * SlayerCore NokiaComposer - Production Version
+ * SlayerCore
+ * Copyright (c) 2026 saberslay
+ * Licensed under the MIT License.
  */
 
 public class NokiaComposer {

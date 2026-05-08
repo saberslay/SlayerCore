@@ -11,16 +11,6 @@ import com.saberslay.slayercore.core.time.Time;
 public class Logger {
 
     public static void log(Level level, String msg) {
-        log(level, msg, (byte) 0); // default value
-    }
-
-    // Simple log levels
-    public enum Level {
-        INFO, WARNING, ERROR
-    }
-
-    // Log a message with level
-    public static void log(Level level, String msg, byte datum) {
         String time = Time.getCurrentDateTime(); // your time method
         switch (level) {
             case INFO:
@@ -34,5 +24,4 @@ public class Logger {
                 break;
         }
     }
-
 }
