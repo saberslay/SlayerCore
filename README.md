@@ -133,48 +133,6 @@ With `Logger` + `NokiaComposer`, you get **clear visual logs** and **audible fee
 
 ---
 
-### 🖼️ GUI Framework
-
-- Abstract base class SlayerWindow simplifies window creation:
-
-- Configurable title and size
-
-- Double-buffered rendering via Graphics2D
-
-- Clean lifecycle methods: init() and render()
-
-- Thread-safe launch mechanism
-
-Example
-```java
-import com.saberslay.slayercore.gui.SlayerWindow;
-import java.awt.*;
-
-public class TestApp extends SlayerWindow {
-
-    public TestApp() {
-        // The set up for the window is title,with,hight,isResisabel and icom path
-        super("Slayer App", 800, 600, true,"");
-    }
-
-    @Override
-    protected void init() {
-        // setup logic
-    }
-
-    @Override
-    protected void render(Graphics2D g2) {
-        g2.setColor(Color.BLACK);
-        g2.drawString("Hello SlayerCore", 100, 100);
-    }
-
-    public static void main(String[] args) {
-        new TestApp().launch();
-    }
-}
-```
----
-
 ## 📜 License
 
 This project is licensed under the MIT License.
