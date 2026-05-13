@@ -23,7 +23,7 @@ public class ImageLoader {
         BufferedImage icon = loadImage(fileName);
 
         if (icon == null) {
-            frame.setIconImage(loadImage(fileName));
+            frame.setIconImage(icon);
         }
     }
 
