@@ -22,13 +22,13 @@ public class ImageLoader {
     public static void setIcon(JFrame frame, String fileName) {
         BufferedImage icon = loadImage(fileName);
 
-        if (icon == null) {
+        if (icon != null) {
             frame.setIconImage(icon);
         }
     }
 
     public static BufferedImage loadImage(String fileName) {
-        String path = BASE_PATH + fileName + ".png";
+        String path = BASE_PATH + fileName;
 
         try (InputStream is = ImageLoader.class.getResourceAsStream(path)) {
             if (is == null) {
