@@ -177,17 +177,4 @@ For full license details, see the LICENSE file in the repository hosted on [Gith
 ### 🛠️ Contributing
 
 Contributions to the GitHub repository are welcome.
-
-Suggested areas for enhancement include:
-
-- Keyboard and mouse input handling
-
-- Game loop and frame timing system
-
-- Advanced rendering utilities
-
-- UI components, widgets, and sprite management
-
-- Performance optimizations and threading improvements
-
 If you would like to contribute, feel free to open a pull request or submit suggestions.
