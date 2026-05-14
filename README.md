@@ -133,6 +133,31 @@ With `Logger` + `NokiaComposer`, you get **clear visual logs** and **audible fee
 
 ---
 
+### Get App version
+Your pom.xml MUST include this block
+```xml
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+            <archive>
+                <manifest>
+                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                </manifest>
+            </archive>
+        </configuration>
+    </plugin>
+</plugins>
+```
+then add this to where you want your version number to be
+```java
+import com.saberslay.slayercore.core.system.AppInfo;
+        
+AppInfo.getVersion();
+```
+---
 ## 📜 License
 
 This project is licensed under the MIT License.
