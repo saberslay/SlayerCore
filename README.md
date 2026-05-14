@@ -118,16 +118,12 @@ log(INFO, "Starting ringtone playback");
 composer.playNotesAsync(false, 250, SHORT, STACCATO, 1, 3, 5, 8);
 ```
 
----
-
 ### 💡 Use Cases
 
 - 🔔 Startup sounds  
 - 🎮 Retro-style feedback  
 - 📟 Nokia RTTTL-style ringtones  
 - 🧪 Audio debugging cues  
-
----
 
 With `Logger` + `NokiaComposer`, you get **clear visual logs** and **audible feedback**, perfect for SlayerCore tools and utilities.
 
@@ -157,6 +153,16 @@ import com.saberslay.slayercore.core.system.AppInfo;
         
 AppInfo.getVersion();
 ```
+---
+### Platform helper
+```java
+import com.saberslay.slayercore.core.platform;
+
+Path dataDir = Platform.ensureDir(
+        Platform.appDataDir("SlayerJournal")
+);
+```
+
 ---
 ## 📜 License
 
