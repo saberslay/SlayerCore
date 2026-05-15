@@ -127,5 +127,11 @@ public class SCDatabase extends SCBase {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public byte[] serialize() {
+		byte[] data = new byte[getSize()];
+		getBytes(data, 0);
+		return data;
+	}
+
 }
