@@ -15,25 +15,24 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Ko‑fi API client for checking supporters / memberships.
- * Designed for use across all SaberSlay applications.
- */
 public class KoFiClient {
 
     private final String apiKey;
+    private final KoFiMembershipCache cache = new KoFiMembershipCache();
 
     public KoFiClient(String apiKey) {
         this.apiKey = apiKey;
     }
 
-    /**
-     * Checks if a given email belongs to a monthly Ko‑fi supporter.
-     *
-     * @param emailToCheck The email of the user to verify.
-     * @return true if the user is a monthly supporter.
-     */
-    public boolean isMonthlySupporter(String emailToCheck) {
+    public SupporterInfo getSupporterInfo(String emailToCheck) {
+
+        // 1. Use cache if valid
+        if (!cache.isExpired()) {
+            return cache.getCachedInfo();
+        }
+
+        SupporterInfo info = new SupporterInfo();
+
         try {
             URL url = new URL("https://ko-fi.com/api/v1/supporters");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -60,12 +59,20 @@ public class KoFiClient {
             JsonParser parser = new JsonParser();
             JsonValue root = parser.parse(sb.toString());
 
-            if (!root.isObject()) return false;
+            if (!root.isObject()) {
+                cache.update(info);
+                return info;
+            }
 
             JsonObject obj = root.asObject();
             JsonArray supporters = obj.getArray("data");
-            if (supporters == null) return false;
 
+            if (supporters == null) {
+                cache.update(info);
+                return info;
+            }
+
+            // Loop supporters
             for (JsonValue v : supporters) {
                 if (!v.isObject()) continue;
 
@@ -73,11 +80,19 @@ public class KoFiClient {
 
                 String email = s.getString("email");
                 boolean isMonthly = s.getBoolean("is_subscription");
+                double amount = s.getNumber("amount");
+                String tierName = s.getString("tier_name");
 
                 if (email != null &&
                         email.equalsIgnoreCase(emailToCheck) &&
                         isMonthly) {
-                    return true;
+
+                    info.isSupporter = true;
+                    info.amount = amount;
+                    info.tierName = tierName != null ? tierName : "";
+                    info.isMonthly = true;
+
+                    break;
                 }
             }
 
@@ -85,6 +100,9 @@ public class KoFiClient {
             ex.printStackTrace();
         }
 
-        return false;
+        // Save to cache
+        cache.update(info);
+
+        return info;
     }
 }
