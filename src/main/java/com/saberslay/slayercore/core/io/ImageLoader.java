@@ -9,21 +9,22 @@ package com.saberslay.slayercore.core.io;
 import com.saberslay.slayercore.core.logging.Level;
 import com.saberslay.slayercore.core.logging.Logger;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class ImageLoader {
 
     private static final String BASE_PATH = "/";
 
-    public static void setIcon(JFrame frame, String fileName) {
+    public static void setIcon(Window window, String fileName) {
         BufferedImage icon = loadImage(fileName);
 
         if (icon != null) {
-            frame.setIconImage(icon);
+            window.setIconImage(icon);
         }
     }
 
