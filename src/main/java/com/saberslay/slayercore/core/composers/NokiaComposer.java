@@ -169,4 +169,28 @@ public class NokiaComposer {
         line.stop();
         line.close();
     }
+
+    public void playSequence(ToneSequence seq) {
+        if (seq == null || seq.isEmpty()) return;
+
+        stop(); // stop any previous playback
+        playing = true;
+
+        currentThread = new Thread(() -> {
+            try {
+                for (Tone t : seq.getTones()) {
+                    if (!playing) break;
+                    playSquareWave(t.getFrequency(), t.getDurationMs());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                playing = false;
+            }
+        });
+
+        currentThread.setDaemon(true);
+        currentThread.start();
+    }
+
 }

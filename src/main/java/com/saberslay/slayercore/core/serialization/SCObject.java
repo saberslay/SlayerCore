@@ -34,6 +34,34 @@ public class SCObject extends SCBase {
 	// ADD METHODS
 	// --------------------------------------------------
 
+	public SCField findField(String name) {
+		for (SCField f : fields) {
+			if (f.getName().equals(name)) {
+				return f;
+			}
+		}
+		return null;
+	}
+
+	public SCString findString(String name) {
+		for (SCString s : strings) {
+			if (s.getName().equals(name)) {
+				return s;
+			}
+		}
+		return null;
+	}
+
+	public SCArray findArray(String name) {
+		for (SCArray a : arrays) {
+			if (a.getName().equals(name)) {
+				return a;
+			}
+		}
+		return null;
+	}
+
+
 	public void addField(SCField field) {
 		fields.add(field);
 		fieldCount = (short) fields.size();

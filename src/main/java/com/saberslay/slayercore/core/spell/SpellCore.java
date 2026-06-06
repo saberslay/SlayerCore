@@ -14,30 +14,29 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SpellCore {
 
     private static final Set<String> dictionary = new HashSet<>();
 
-    // Debounce timer (explicit Swing Timer)
     private static final int DEBOUNCE_MS = 120;
     private static javax.swing.Timer debounceTimer;
 
-    // Background worker thread
     private static final ExecutorService worker = Executors.newSingleThreadExecutor();
+
+    // Word pattern: letters and apostrophes (you can tweak this)
+    private static final Pattern WORD_PATTERN = Pattern.compile("[A-Za-z']+");
 
     // ============================
     // LOAD DICTIONARY
     // ============================
     public static void init(Path storageDir) {
         try {
-
             Path dictPath = storageDir.resolve("en_GB.scd");
 
             System.out.println("Loading dictionary from: " + dictPath.toAbsolutePath());
-            System.out.println("Exists: " + Files.exists(dictPath));
-            System.out.println("Size: " + Files.size(dictPath));
-
             if (!Files.exists(dictPath)) {
                 throw new IllegalStateException("dictionary.scd missing from storage directory: " + dictPath);
             }
@@ -50,18 +49,11 @@ public class SpellCore {
                 return;
             }
 
-            System.out.println("Objects in dictionary:");
-            for (SCObject obj : db.objects) {
-                System.out.println(" - " + obj.getName());
-            }
-
             String[] categories = { "ADJECTIVES", "VERBS", "NOUNS" };
-
             int loaded = 0;
 
             for (String cat : categories) {
                 SCObject obj = db.findObject(cat);
-
                 if (obj == null) {
                     System.err.println("Dictionary category missing: " + cat);
                     continue;
@@ -93,7 +85,6 @@ public class SpellCore {
 
     private static void scheduleCheck(JTextPane text) {
         if (debounceTimer != null) debounceTimer.stop();
-
         debounceTimer = new javax.swing.Timer(DEBOUNCE_MS, e -> runSpellCheck(text));
         debounceTimer.setRepeats(false);
         debounceTimer.start();
@@ -107,20 +98,18 @@ public class SpellCore {
 
         worker.submit(() -> {
             try {
-                String lower = contentSnapshot.toLowerCase();
-                String[] words = lower.split("\\W+");
+                String lower = contentSnapshot.toLowerCase(Locale.ROOT);
+                Matcher matcher = WORD_PATTERN.matcher(lower);
 
                 List<HighlightOp> ops = new ArrayList<>();
-
-                int pos = 0;
                 String prev = null;
 
-                for (String word : words) {
+                while (matcher.find()) {
+                    String word = matcher.group();
                     if (word.isEmpty()) continue;
 
-                    int start = lower.indexOf(word, pos);
-                    int end = start + word.length();
-                    pos = end;
+                    int start = matcher.start();
+                    int length = word.length();
 
                     Color color;
 
@@ -138,7 +127,7 @@ public class SpellCore {
                         color = Color.RED;
                     }
 
-                    ops.add(new HighlightOp(start, word.length(), color));
+                    ops.add(new HighlightOp(start, length, color));
                     prev = word;
                 }
 
@@ -146,7 +135,7 @@ public class SpellCore {
                     ops.add(new HighlightOp(0, 1, Color.ORANGE));
                 }
 
-                if (GrammarCore.needsPunctuation(lower)) {
+                if (lower.length() > 0 && GrammarCore.needsPunctuation(lower)) {
                     ops.add(new HighlightOp(lower.length() - 1, 1, Color.ORANGE));
                 }
 
@@ -185,8 +174,8 @@ public class SpellCore {
     // HELPER CLASS
     // ============================
     private static class HighlightOp {
-        int start, length;
-        Color color;
+        final int start, length;
+        final Color color;
 
         HighlightOp(int s, int l, Color c) {
             start = s;
